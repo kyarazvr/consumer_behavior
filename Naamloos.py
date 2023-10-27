@@ -8,12 +8,14 @@ from urllib.request import urlopen
 import json
 import pandas as pd
 import numpy as np
+import scipy
 import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 import plotly.express as px
 import seaborn as sns
 import streamlit as st
 import plotly.figure_factory as ff
+
 
 
 
@@ -93,18 +95,18 @@ with tab2:
 
     st.write("the noticable is that people tend to buy more footwear in the summer than the rest of seasons.")
     st.write("")
-    # st.write("Boxplot of the number of previous purchases and their subscription status. ")
-    # #boxplot
-    # df['Subscription Status_1']= 0
+    st.write("Boxplot of the number of previous purchases and their subscription status. ")
+    #boxplot
+    df['Subscription Status_1']= 0
 
-    # for index, row in df.iterrows():    
-    #     if (df['Subscription Status'].iloc[index]=='Yes'): 
-    #         df['Subscription Status_1'].iloc[index] = 1
-    #     else:
-    #         df['Subscription Status_1'].iloc[index] = 0
+    for index, row in df.iterrows():    
+        if (df['Subscription Status'].iloc[index]=='Yes'): 
+            df['Subscription Status_1'].iloc[index] = 1
+        else:
+            df['Subscription Status_1'].iloc[index] = 0
             
-    # fig = px.box(df, x= 'Subscription Status_1', y= 'Previous Purchases', color= 'Season')
-    # st.plotly_chart(fig)
+    fig = px.box(df, x= 'Subscription Status_1', y= 'Previous Purchases', color= 'Season')
+    st.plotly_chart(fig)
 
     #displot
     purchase_amount = df['Purchase Amount (USD)']
@@ -115,8 +117,8 @@ with tab2:
     median_purchase_amount = purchase_amount.median()
 
 
-    fig.add_vline(x=mean_purchase_amount, line_dash="dash", line_color="red", annotation_text=f'Mean: {mean_purchase_amount:.2f} hours', annotation_position="top right")
-    fig.add_vline(x=median_purchase_amount, line_dash="dash", line_color="green", annotation_text=f'Median: {median_purchase_amount:.2f} hours', annotation_position="bottom right")
+    fig.add_vline(x=mean_purchase_amount, line_dash="dash", line_color="red", annotation_text=f'Mean: {mean_purchase_amount:.2f}', annotation_position="top right")
+    fig.add_vline(x=median_purchase_amount, line_dash="dash", line_color="green", annotation_text=f'Median: {median_purchase_amount:.2f}', annotation_position="bottom right")
 
 
     fig.update_layout(
