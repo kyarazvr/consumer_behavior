@@ -1,10 +1,5 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
 
 
-pip install scipy
 
 from urllib.request import urlopen
 import json
