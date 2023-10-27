@@ -4,6 +4,8 @@
 # In[ ]:
 
 
+pip install scipy
+
 from urllib.request import urlopen
 import json
 import pandas as pd
@@ -15,6 +17,7 @@ import plotly.express as px
 import seaborn as sns
 import streamlit as st
 import plotly.figure_factory as ff
+
 
 
 
