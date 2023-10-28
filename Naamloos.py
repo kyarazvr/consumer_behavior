@@ -62,7 +62,9 @@ with tab2:
     st.write("On this page we will discuss the purchases analyses on the citizens of the US. We will be looking at the amount of purchases for each season first.")
 
     #histogramplot 
-    fig = px.histogram(df, y= 'Purchase Amount (USD)', x= 'Age', color= 'Season')
+    fig = px.line(df.groupby(['Season', 'Age'])['Purchase Amount (USD)'].sum().reset_index(), 
+              y='Purchase Amount (USD)', x='Age', color='Season')
+
     st.plotly_chart(fig)
 
     st.write('Its clear to see that in the fall people tend to spend the most amount on purchases and in the winter the least amount.')
